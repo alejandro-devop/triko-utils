@@ -108,3 +108,8 @@ export const formatDistance = (distance = 0, options = {}) => {
   const toKm = (distance / 1000).toFixed(1);
   return `${toKm}Km`;
 };
+
+export const getTrikoAttrs = (triko = {}) => {
+  const {user = {}} = triko;
+  return JSON.parse(user.attrs || '{}');
+};
