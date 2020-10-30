@@ -1,5 +1,4 @@
 import _ from 'lodash';
-// import {StackActions, NavigationActions} from 'react-navigation';
 import moment from 'moment';
 import * as geolib from 'geolib';
 
@@ -8,10 +7,38 @@ import * as geolib from 'geolib';
  * @author Jorge Alejandro Quiroz Serna <jakop.box@gmail.com>
  * @param {*} value
  */
-export const isEmpty = value => {
+export const isEmpty = (value) => {
   const compare = _.trim(value);
   return compare === '' || compare === null || compare === undefined;
 };
+
+/**
+ * This function validates if two passed
+ * @param timeFrom
+ * @param timeTo
+ * @param format
+ * @returns {boolean}
+ */
+export const isGreaterThen = (timeFrom, timeTo, format = 'HH:mm:ss') => {
+  if (!timeFrom || !timeTo) {
+    return false;
+  }
+  const diff = moment(timeTo, format).diff(moment(timeFrom, format), 'seconds');
+  return diff < 0;
+};
+
+/**
+ * This function allows to validate if one of the passed values is empty.
+ * @param values
+ * @returns {*}
+ */
+export const oneIsEmpty = (values = []) =>
+  values.reduce((empty, currentValue) => {
+    if (isEmpty(currentValue)) {
+      empty = true;
+    }
+    return empty;
+  }, false);
 
 export const redirectTo = (navigation, route) => {
   // const resetAction = StackActions.reset({
@@ -26,7 +53,7 @@ export const replacheWith = (navigation, route, params) => {
   // navigation.dispatch(resetAction);
 };
 
-export const getPassedTime = dateObj => {
+export const getPassedTime = (dateObj) => {
   const currentDate = moment();
   const diffDays = currentDate.diff(dateObj, 'days', false);
   const diffHours = currentDate.diff(dateObj, 'hours', false);
@@ -76,7 +103,7 @@ export const getElapsedTime = (
   return timePieces;
 };
 
-export const explodeNames = fullName => {
+export const explodeNames = (fullName) => {
   const [firstName, lastName, ...other] = fullName.split(' ');
   return [firstName, lastName + (other ? other.join(' ') : '')];
 };
