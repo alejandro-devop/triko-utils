@@ -136,6 +136,8 @@ export const formatDistance = (distance = 0, options = {}) => {
   return `${toKm}Km`;
 };
 
+export const upcsf = (string) => string[0].toUpperCase() + string.slice(1);
+
 export const getTrikoAttrs = (triko = {}) => {
   const {user = {}} = triko;
   return JSON.parse(user.attrs || '{}');
