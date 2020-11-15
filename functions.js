@@ -142,3 +142,5 @@ export const getTrikoAttrs = (triko = {}) => {
   const {user = {}} = triko;
   return JSON.parse(user.attrs || '{}');
 };
+
+export const isIn = (value, stack = []) => stack.includes(value);
