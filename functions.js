@@ -144,3 +144,22 @@ export const getTrikoAttrs = (triko = {}) => {
 };
 
 export const isIn = (value, stack = []) => stack.includes(value);
+
+export const dd = (message = 'Debug=> ', target) => {
+  console.clear();
+  console.log(
+    message,
+    typeof target === 'object' ? JSON.stringify(target) : target,
+  );
+};
+
+export const isValidEmail = (email) => {
+  const regExp = new RegExp(
+    '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$',
+    'g',
+  );
+  if (!email.match(regExp)) {
+    return false;
+  }
+  return true;
+};
